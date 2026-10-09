@@ -36,12 +36,31 @@ npm run start   # local preview at http://127.0.0.1:3000
 
 ```bash
 npm run build
-docker compose up -d   # http://localhost:8080
+docker compose up -d --build   # http://localhost:33080
 ```
 
-`compose.yaml` runs [miniserve](https://github.com/svenstaro/miniserve) as `nobody` with `out/` mounted read-only. It sends a Content-Security-Policy that limits the page to same-origin requests, so the browser blocks any attempt to send data to another host. After a rebuild, run `docker compose restart`. The build replaces the `out/` directory, and the running container keeps serving the old, deleted one.
+The `Dockerfile` copies `out/` into a [miniserve](https://github.com/svenstaro/miniserve) image that runs as `nobody`. miniserve sends a Content-Security-Policy that limits the page to same-origin requests, so the browser blocks any attempt to send data to another host.
 
 Any other static file server works too. No Node.js process is needed at runtime.
+
+### Published image
+
+`.github/workflows/docker-publish.yml` builds the site and pushes `ghcr.io/kaliatech/removeclaudewhitespace`.
+
+| Trigger | Image tags |
+|---|---|
+| Push to `main` | `latest`, `sha-<short>` |
+| Push tag `v1.2.3` | `1.2.3`, `latest`, `sha-<short>` |
+
+```yaml
+services:
+  web:
+    image: ghcr.io/kaliatech/removeclaudewhitespace:latest
+    ports:
+      - "33080:8080"
+    read_only: true
+    restart: unless-stopped
+```
 
 ## License
 
