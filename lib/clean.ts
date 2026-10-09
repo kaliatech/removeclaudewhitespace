@@ -155,14 +155,17 @@ function smartUnwrapLines(lines: string[]): string[] {
 function markdownNormalize(lines: string[]): string[] {
   // Group consecutive non-blank lines into paragraphs, separated by blank lines.
   // Each paragraph's lines are left-trimmed and joined with a space, unless the
-  // paragraph looks structural (code fence, list, heading, blockquote, table).
+  // paragraph looks structural (list, heading, blockquote, table).
+  // Fenced code blocks, from an opening ``` line through its closing ``` line,
+  // pass through unchanged.
   const out: string[] = [];
   let buf: string[] = [];
+  let inFence = false;
 
   const flush = () => {
     if (buf.length === 0) return;
     const isStructural = buf.some((l) =>
-      /^\s*(```|>|#{1,6} |[-*+] |\d+\.\s|\|)/.test(l),
+      /^\s*(>|#{1,6} |[-*+] |\d+\.\s|\|)/.test(l),
     );
     if (isStructural) {
       // Preserve internal structure but still left-trim each line.
@@ -174,7 +177,13 @@ function markdownNormalize(lines: string[]): string[] {
   };
 
   for (const line of lines) {
-    if (line.trim() === "") {
+    if (/^\s*```/.test(line)) {
+      flush();
+      out.push(line);
+      inFence = !inFence;
+    } else if (inFence) {
+      out.push(line);
+    } else if (line.trim() === "") {
       flush();
       out.push("");
     } else {
