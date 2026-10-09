@@ -4,6 +4,7 @@ services:
     image: svenstaro/miniserve:0.35.0-alpine
     command:
       - /srv
+      - --port=33080
       - --index=index.html
       - --disable-indexing
       - --hide-version-footer
@@ -13,7 +14,7 @@ services:
       - --header=X-Robots-Tag:noindex, nofollow
       - --header=X-Content-Type-Options:nosniff
     ports:
-      - "8080:8080"
+      - "33080:33080"
     volumes:
       - ./out:/srv:ro
     user: "65534:65534"

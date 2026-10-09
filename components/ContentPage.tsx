@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BuildInfo from "@/components/BuildInfo";
 import Cleaner from "@/components/Cleaner";
 
 export type Crumb = { name: string; href: string };
@@ -19,11 +20,12 @@ export default function ContentPage({
   return (
     <main className="min-h-screen bg-white">
       <header className="border-b border-ink-200/80 bg-ink-50/80 backdrop-blur-md sticky top-0 z-30">
-        <div className="max-w-6xl mx-auto px-5 lg:px-8 h-14 flex items-center justify-between">
+        <div className="px-5 lg:px-8 h-14 flex items-center justify-between">
           <Link href="/" className="font-mono text-[13px] text-ink-900">
             ← remove<span className="text-accent">claude</span>whitespace
           </Link>
           <nav className="flex items-center gap-5 text-xs font-medium text-ink-500">
+            <BuildInfo />
             <Link href="/why-claude-code-output-is-messy" className="hover:text-ink-900 transition">
               Why
             </Link>
@@ -64,7 +66,7 @@ export default function ContentPage({
       </article>
 
       <section className="border-t border-ink-200/80 bg-ink-50">
-        <div className="max-w-6xl mx-auto px-5 lg:px-8 py-12">
+        <div className="px-5 lg:px-8 py-12">
           <div className="mb-4">
             <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-accent">
               Try it

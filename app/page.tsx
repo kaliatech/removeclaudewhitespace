@@ -1,3 +1,4 @@
+import BuildInfo from "@/components/BuildInfo";
 import Cleaner from "@/components/Cleaner";
 import Link from "next/link";
 
@@ -6,7 +7,7 @@ export default function HomePage() {
     <main className="min-h-screen">
       {/* Header */}
       <header className="border-b border-ink-200/80 bg-ink-50/80 backdrop-blur-md sticky top-0 z-30">
-        <div className="max-w-6xl mx-auto px-5 lg:px-8 h-14 flex items-center justify-between">
+        <div className="px-5 lg:px-8 h-14 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Logo />
             <span className="font-mono text-[13px] tracking-tight text-ink-900">
@@ -14,6 +15,7 @@ export default function HomePage() {
             </span>
           </Link>
           <nav className="flex items-center gap-5 text-xs font-medium text-ink-500">
+            <BuildInfo />
             <a href="#how" className="hover:text-ink-900 transition">How it works</a>
             <a href="#faq" className="hover:text-ink-900 transition">FAQ</a>
             <a
@@ -30,7 +32,7 @@ export default function HomePage() {
 
       {/* Tool — first thing on the page */}
       <section className="relative grid-bg border-b border-ink-200/80">
-        <div className="max-w-6xl mx-auto px-5 lg:px-8 pt-8 lg:pt-10 pb-10 lg:pb-14">
+        <div className="px-5 lg:px-8 pt-8 lg:pt-10 pb-10 lg:pb-14">
           <div className="flex flex-wrap items-end justify-between gap-4 mb-5">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-ink-200 bg-white text-[11px] font-mono uppercase tracking-wider text-ink-500 mb-3 animate-fade-in">
