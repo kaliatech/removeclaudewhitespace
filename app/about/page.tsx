@@ -5,7 +5,6 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "About Remove Claude Whitespace — a free, client-side tool that cleans Claude Code output for paste-ready use.",
-  alternates: { canonical: "/about" },
 };
 
 export default function Page() {
@@ -36,14 +35,14 @@ export default function Page() {
           <p>
             The source is on{" "}
             <a
-              href="https://github.com/coeymusa/removeclaudewhitespace"
+              href="https://github.com/kaliatech/removeclaudewhitespace"
               target="_blank"
               rel="noopener"
               className="text-accent underline underline-offset-4"
             >
               GitHub
             </a>
-            . Bug reports and feature requests welcome.
+            .
           </p>
         </div>
       </article>

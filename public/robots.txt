@@ -1,0 +1,4 @@
+# Crawling stays allowed so crawlers can read the noindex meta tag set in
+# app/layout.tsx. Disallowing here would hide that tag from them.
+User-agent: *
+Allow: /

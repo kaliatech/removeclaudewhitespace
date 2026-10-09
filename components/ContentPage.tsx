@@ -21,7 +21,7 @@ export default function ContentPage({
       <header className="border-b border-ink-200/80 bg-ink-50/80 backdrop-blur-md sticky top-0 z-30">
         <div className="max-w-6xl mx-auto px-5 lg:px-8 h-14 flex items-center justify-between">
           <Link href="/" className="font-mono text-[13px] text-ink-900">
-            ← remove<span className="text-accent">claude</span>whitespace.com
+            ← remove<span className="text-accent">claude</span>whitespace
           </Link>
           <nav className="flex items-center gap-5 text-xs font-medium text-ink-500">
             <Link href="/why-claude-code-output-is-messy" className="hover:text-ink-900 transition">
@@ -80,7 +80,7 @@ export default function ContentPage({
       <footer className="border-t border-ink-200/80 bg-ink-900 text-ink-300">
         <div className="max-w-6xl mx-auto px-5 lg:px-8 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <Link href="/" className="font-mono text-[13px] text-ink-100">
-            remove<span className="text-accent">claude</span>whitespace.com
+            remove<span className="text-accent">claude</span>whitespace
           </Link>
           <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-ink-400">
             <Link href="/strip-ansi-codes-online" className="hover:text-white">Strip ANSI codes</Link>
@@ -92,101 +92,4 @@ export default function ContentPage({
       </footer>
     </main>
   );
-}
-
-export function howToJsonLd({
-  name,
-  description,
-  steps,
-  url,
-}: {
-  name: string;
-  description: string;
-  steps: { name: string; text: string }[];
-  url: string;
-}) {
-  return {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "HowTo",
-        name,
-        description,
-        totalTime: "PT30S",
-        step: steps.map((s, i) => ({
-          "@type": "HowToStep",
-          position: i + 1,
-          name: s.name,
-          text: s.text,
-        })),
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Home",
-            item: "https://removeclaudewhitespace.com/",
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name,
-            item: url,
-          },
-        ],
-      },
-    ],
-  };
-}
-
-export function articleJsonLd({
-  headline,
-  description,
-  url,
-  datePublished,
-}: {
-  headline: string;
-  description: string;
-  url: string;
-  datePublished: string;
-}) {
-  return {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Article",
-        headline,
-        description,
-        mainEntityOfPage: url,
-        url,
-        datePublished,
-        dateModified: datePublished,
-        author: { "@type": "Organization", name: "Remove Claude Whitespace" },
-        publisher: {
-          "@type": "Organization",
-          name: "Remove Claude Whitespace",
-          url: "https://removeclaudewhitespace.com/",
-        },
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Home",
-            item: "https://removeclaudewhitespace.com/",
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: headline,
-            item: url,
-          },
-        ],
-      },
-    ],
-  };
 }

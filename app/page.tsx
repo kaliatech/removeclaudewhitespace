@@ -1,6 +1,5 @@
 import Cleaner from "@/components/Cleaner";
 import Link from "next/link";
-import { PROJECTS } from "@/lib/projects";
 
 export default function HomePage() {
   return (
@@ -11,17 +10,14 @@ export default function HomePage() {
           <Link href="/" className="flex items-center gap-2">
             <Logo />
             <span className="font-mono text-[13px] tracking-tight text-ink-900">
-              remove<span className="text-accent">claude</span>whitespace.com
+              remove<span className="text-accent">claude</span>whitespace
             </span>
           </Link>
           <nav className="flex items-center gap-5 text-xs font-medium text-ink-500">
             <a href="#how" className="hover:text-ink-900 transition">How it works</a>
             <a href="#faq" className="hover:text-ink-900 transition">FAQ</a>
-            <Link href="/built-by" className="hover:text-ink-900 transition">
-              Built by
-            </Link>
             <a
-              href="https://github.com/coeymusa/removeclaudewhitespace"
+              href="https://github.com/kaliatech/removeclaudewhitespace"
               target="_blank"
               rel="noopener"
               className="hover:text-ink-900 transition"
@@ -266,64 +262,12 @@ export default function HomePage() {
               preserved on the left so you can compare.
             </Faq>
             <Faq q="Can I use it on the command line?">
-              You can pipe text through your clipboard using OS tools. A CLI
-              version is on the roadmap — open an issue on GitHub to vote.
+              You can pipe text through your clipboard using OS tools.
             </Faq>
             <Faq q="Is there a character limit?">
               No hard limit. The tool processes hundreds of thousands of
               characters without breaking a sweat because it runs locally.
             </Faq>
-          </div>
-        </div>
-      </section>
-
-      {/* Other projects */}
-      <section className="border-t border-ink-200/80 bg-ink-50">
-        <div className="max-w-6xl mx-auto px-5 lg:px-8 py-16 lg:py-20">
-          <div className="flex items-end justify-between mb-8 gap-4 flex-wrap">
-            <div>
-              <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-accent">
-                More from the same maker
-              </span>
-              <h2 className="mt-3 text-3xl lg:text-4xl font-semibold tracking-tight text-ink-900">
-                Other things I&apos;ve built
-              </h2>
-            </div>
-            <Link
-              href="/built-by"
-              className="text-sm font-medium text-ink-700 hover:text-accent transition"
-            >
-              See all →
-            </Link>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {PROJECTS.slice(0, 4).map((p) => (
-              <a
-                key={p.slug}
-                href={p.url}
-                target="_blank"
-                rel="noopener"
-                className="group p-5 rounded-xl bg-white border border-ink-200 hover:border-ink-900 transition"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-ink-400">
-                    {p.category}
-                  </span>
-                  <span className="text-ink-300 group-hover:text-accent group-hover:translate-x-1 transition-all">
-                    →
-                  </span>
-                </div>
-                <h3 className="text-base font-semibold text-ink-900 mb-1">
-                  {p.name}
-                </h3>
-                <p className="font-mono text-[10px] text-ink-400 mb-2">
-                  {p.domain}
-                </p>
-                <p className="text-xs text-ink-500 leading-relaxed line-clamp-3">
-                  {p.tagline}
-                </p>
-              </a>
-            ))}
           </div>
         </div>
       </section>
@@ -339,16 +283,21 @@ export default function HomePage() {
           </div>
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 text-xs text-ink-400">
             <a
-              href="https://coreyscodecave.com"
+              href="https://kaliatech.com"
               target="_blank"
               rel="noopener"
               className="hover:text-white transition"
             >
-              Built by Corey · coreyscodecave.com
+              kaliatech.com
             </a>
-            <Link href="/built-by" className="hover:text-white transition">
-              Other projects
-            </Link>
+            <a
+              href="https://github.com/kaliatech/removeclaudewhitespace"
+              target="_blank"
+              rel="noopener"
+              className="hover:text-white transition"
+            >
+              Source on GitHub
+            </a>
           </div>
         </div>
       </footer>
