@@ -32,7 +32,16 @@ npm run build   # writes static files to out/
 npm run start   # local preview at http://127.0.0.1:3000
 ```
 
-To host it, serve the `out/` directory with any static file server (nginx, Caddy, etc.). No Node.js process is needed at runtime.
+## Host
+
+```bash
+npm run build
+docker compose up -d   # http://localhost:8080
+```
+
+`compose.yaml` runs [miniserve](https://github.com/svenstaro/miniserve) as `nobody` with `out/` mounted read-only. It sends a Content-Security-Policy that limits the page to same-origin requests, so the browser blocks any attempt to send data to another host. After a rebuild, run `docker compose restart`. The build replaces the `out/` directory, and the running container keeps serving the old, deleted one.
+
+Any other static file server works too. No Node.js process is needed at runtime.
 
 ## License
 
